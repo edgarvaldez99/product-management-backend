@@ -1,0 +1,6 @@
+ACTIVE = "Active"
+INACTIVE = "Inactive"
+PRODUCT_STATUS = (
+    (ACTIVE, ACTIVE),
+    (INACTIVE, INACTIVE),
+)
