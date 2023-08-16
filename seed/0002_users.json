@@ -1,0 +1,38 @@
+[
+    {
+        "model": "user.user",
+        "pk": 1,
+        "fields": {
+            "username": "user1",
+            "first_name": "Usuario",
+            "last_name": "Uno",
+            "email": "user1@gmail.com",
+            "password": "user1234",
+            "is_active": false
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 2,
+        "fields": {
+            "username": "user2",
+            "first_name": "Usuario",
+            "last_name": "Dos",
+            "email": "user2@gmail.com",
+            "password": "user1234",
+            "is_active": false
+        }
+    },
+    {
+        "model": "user.user",
+        "pk": 3,
+        "fields": {
+            "username": "user3",
+            "first_name": "Usuario",
+            "last_name": "Tres",
+            "email": "user3@gmail.com",
+            "password": "user1234",
+            "is_active": false
+        }
+    }
+]

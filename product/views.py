@@ -1,19 +1,36 @@
-from rest_framework import viewsets
+from rest_framework import generics
 
 from .models import Category, Image, Product
-from .serializers import CategorySerializer, ImageSerializer, ProductSerializer
+from .serializers import (
+    CategorySerializer,
+    ImageSerializer,
+    ProductFormSerializer,
+    UnregisteredProductSerializer,
+)
 
 
-class CategoryViewSet(viewsets.ModelViewSet):
+class CategoryListCreateAPIView(generics.ListCreateAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
 
 
-class ImageViewSet(viewsets.ModelViewSet):
+class ImageListCreateAPIView(generics.ListCreateAPIView):
     queryset = Image.objects.all()
     serializer_class = ImageSerializer
 
 
-class ProductViewSet(viewsets.ModelViewSet):
+class UnregisteredProductListAPIView(generics.ListAPIView):
     queryset = Product.objects.all()
-    serializer_class = ProductSerializer
+    serializer_class = UnregisteredProductSerializer
+    authentication_classes = []
+    permission_classes = []
+
+
+class ProductListCreateAPIView(generics.ListCreateAPIView):
+    serializer_class = ProductFormSerializer
+    queryset = Product.objects.all()
+
+
+class ProductRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = ProductFormSerializer
+    queryset = Product.objects.all()
