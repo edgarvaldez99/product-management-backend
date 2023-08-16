@@ -6,6 +6,12 @@ from .models import Category, Image, Product
 
 
 class CategorySerializer(serializers.ModelSerializer):
+    id = serializers.IntegerField(required=True)
+    name = serializers.CharField(read_only=True)
+
+    def get_queryset(self):
+        return Category.objects.all()
+
     class Meta:
         model = Category
         fields = ["id", "name"]
@@ -36,9 +42,7 @@ class ProductFormSerializer(serializers.Serializer):
         choices=PRODUCT_STATUS,
         default=INACTIVE,
     )
-    categories = serializers.PrimaryKeyRelatedField(
-        queryset=Category.objects.all(), many=True
-    )
+    categories = CategorySerializer(many=True)
     images = ImageSerializer(many=True)
 
     def create(self, validated_data):
@@ -48,7 +52,9 @@ class ProductFormSerializer(serializers.Serializer):
         categories = validated_data.pop("categories", [])
         images = validated_data.pop("images", [])
         product = Product.objects.create(**validated_data)
-        product.categories.set(categories)
+        product.categories.set(
+            [Category.objects.get(pk=category.get("id")) for category in categories]
+        )
         product.images.set([Image.objects.create(**image) for image in images])
         return product
 
@@ -58,7 +64,10 @@ class ProductFormSerializer(serializers.Serializer):
         """
         instance.name = validated_data.get("name", instance.name)
         instance.status = validated_data.get("status", instance.status)
-        instance.categories.set(validated_data.get("categories", instance.categories))
+        categories = validated_data.get("categories", instance.categories)
+        instance.categories.set(
+            [Category.objects.get(pk=category.get("id")) for category in categories]
+        )
         images = validated_data.get("images", instance.images)
         instance.images.set([Image.objects.create(**image) for image in images])
         instance.save()
