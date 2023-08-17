@@ -18,6 +18,7 @@ Pillow = "^10.0.0"
 django-cors-headers = "^4.2.0"
 drf-extra-fields = "^3.7.0"
 django-filter = "^23.2"
+djangorestframework-camel-case = "^1.4.2"
 
 [tool.poetry.dev-dependencies]
 types-requests = "^2.31.0"

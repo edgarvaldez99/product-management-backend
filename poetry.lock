@@ -200,6 +200,14 @@ django = ">=3.0"
 pytz = "*"
 
 [[package]]
+name = "djangorestframework-camel-case"
+version = "1.4.2"
+description = "Camel case JSON support for Django REST framework."
+category = "main"
+optional = false
+python-versions = ">=3.5"
+
+[[package]]
 name = "djangorestframework-simplejwt"
 version = "5.2.2"
 description = "A minimal JSON Web Token authentication plugin for Django REST Framework"
@@ -629,7 +637,7 @@ test = ["covdefaults (>=2.3)", "coverage (>=7.2.7)", "coverage-enable-subprocess
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "7e84224f7e8d57dcf645518307c90131e3cffca8a7231931b7de00282d408e91"
+content-hash = "3d614c76ae951fccb3eff9a022fb6338b41093d091f4851fadc066ced66285df"
 
 [metadata.files]
 argcomplete = [
@@ -842,6 +850,9 @@ django-filter = [
 djangorestframework = [
     {file = "djangorestframework-3.14.0-py3-none-any.whl", hash = "sha256:eb63f58c9f218e1a7d064d17a70751f528ed4e1d35547fdade9aaf4cd103fd08"},
     {file = "djangorestframework-3.14.0.tar.gz", hash = "sha256:579a333e6256b09489cbe0a067e66abe55c6595d8926be6b99423786334350c8"},
+]
+djangorestframework-camel-case = [
+    {file = "djangorestframework-camel-case-1.4.2.tar.gz", hash = "sha256:cdae75846648abb6585c7470639a1d2fb064dc45f8e8b62aaa50be7f1a7a61f4"},
 ]
 djangorestframework-simplejwt = [
     {file = "djangorestframework_simplejwt-5.2.2-py3-none-any.whl", hash = "sha256:4c0d2e2513e12587d93501ac091781684a216c3ee614eb3b5a10586aef5ca845"},
