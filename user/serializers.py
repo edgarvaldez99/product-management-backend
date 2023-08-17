@@ -7,7 +7,7 @@ from rest_framework.validators import UniqueValidator
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = get_user_model()
-        fields = ["username", "first_name", "last_name", "email", "is_active"]
+        fields = ["id", "username", "first_name", "last_name", "email", "is_active"]
 
 
 class UserSignUpSerializer(serializers.Serializer):
