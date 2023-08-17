@@ -11,6 +11,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class UserSignUpSerializer(serializers.Serializer):
+    id = serializers.IntegerField(read_only=True)
     username = serializers.CharField(
         min_length=4,
         max_length=20,
@@ -23,6 +24,7 @@ class UserSignUpSerializer(serializers.Serializer):
     )
     password = serializers.CharField(min_length=8, max_length=64, write_only=True)
     password_confirmation = serializers.CharField(write_only=True)
+    is_active = serializers.BooleanField(read_only=True)
 
     def validate(self, data):
         passwd = data["password"]

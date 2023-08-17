@@ -17,4 +17,12 @@ class UserSignUpView(generics.CreateAPIView):
 class UserByTokenView(views.APIView):
     def get(self, request, *args, **kwargs):
         userSerializer = UserSerializer(request.user)
-        return JsonResponse(userSerializer.data)
+        user = {
+            "id": userSerializer.data.get("id"),
+            "username": userSerializer.data.get("username"),
+            "firstName": userSerializer.data.get("first_name"),
+            "lastName": userSerializer.data.get("last_name"),
+            "email": userSerializer.data.get("email"),
+            "isActive": userSerializer.data.get("is_active"),
+        }
+        return JsonResponse(user)
