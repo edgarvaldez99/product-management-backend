@@ -1,6 +1,7 @@
 from django.views.generic.detail import SingleObjectMixin
 from rest_framework import generics
 
+from .filters import ProductFilter
 from .models import Category, Image, Product
 from .permissions import IsActiveUser
 from .serializers import (
@@ -26,6 +27,7 @@ class UnregisteredProductListAPIView(generics.ListAPIView):
     serializer_class = UnregisteredProductSerializer
     authentication_classes = []
     permission_classes = []
+    filterset_class = ProductFilter
 
 
 class ProductMixin(SingleObjectMixin):
@@ -35,7 +37,7 @@ class ProductMixin(SingleObjectMixin):
 
 
 class ProductListCreateAPIView(ProductMixin, generics.ListCreateAPIView):
-    pass
+    filterset_class = ProductFilter
 
 
 class ProductRetrieveUpdateDestroyAPIView(
