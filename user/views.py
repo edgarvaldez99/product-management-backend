@@ -12,6 +12,8 @@ class UserListAPIView(generics.ListAPIView):
 
 class UserSignUpView(generics.CreateAPIView):
     serializer_class = UserSignUpSerializer
+    authentication_classes = []
+    permission_classes = []
 
 
 class UserByTokenView(views.APIView):
