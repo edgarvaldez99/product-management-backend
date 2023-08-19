@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 import os
 
+from datetime import timedelta
+
 from pathlib import Path
 
 from decouple import config as env  # type: ignore
@@ -166,3 +168,6 @@ REST_FRAMEWORK = {
 
 CORS_ORIGIN_WHITELIST = ["http://localhost:3000"]
 CORS_ALLOW_CREDENTIALS = True
+
+ACCESS_TOKEN_LIFETIME = timedelta(days=1)
+REFRESH_TOKEN_LIFETIME = timedelta(days=1)

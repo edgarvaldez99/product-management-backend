@@ -1,7 +1,7 @@
 from rest_framework import serializers
-from drf_extra_fields.fields import Base64ImageField
 
 from .choices import PRODUCT_STATUS, INACTIVE
+from .fields import HttpBase64ImageField
 from .models import Category, Image, Product
 
 
@@ -19,7 +19,7 @@ class CategorySerializer(serializers.ModelSerializer):
 
 class ImageSerializer(serializers.ModelSerializer):
     id = serializers.IntegerField(read_only=True)
-    photo = Base64ImageField()
+    photo = HttpBase64ImageField()
 
     def get_queryset(self):
         return Image.objects.all()
@@ -55,7 +55,9 @@ class ProductFormSerializer(serializers.Serializer):
         product.categories.set(
             [Category.objects.get(pk=category.get("id")) for category in categories]
         )
-        product.images.set([Image.objects.create(**image) for image in images])
+        product.images.set(
+            [Image.objects.create(photo=dict(image).get("photo")) for image in images]
+        )
         return product
 
     def update(self, instance, validated_data):
@@ -68,7 +70,13 @@ class ProductFormSerializer(serializers.Serializer):
         instance.categories.set(
             [Category.objects.get(pk=category.get("id")) for category in categories]
         )
-        images = validated_data.get("images", instance.images)
-        instance.images.set([Image.objects.create(**image) for image in images])
+        images = validated_data.get("images", None)
+        if images:
+            instance.images.set(
+                [
+                    Image.objects.create(photo=dict(image).get("photo"))
+                    for image in images
+                ]
+            )
         instance.save()
         return instance
