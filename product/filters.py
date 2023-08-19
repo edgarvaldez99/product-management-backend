@@ -10,7 +10,7 @@ class ProductFilter(django_filters.FilterSet):
 
     def filter_categories(self, queryset, name, value):
         categories = value.split(",") if value else []
-        return queryset.filter(categories__name__in=categories)
+        return queryset.filter(categories__id__in=categories)
 
     class Meta:
         model = Product
