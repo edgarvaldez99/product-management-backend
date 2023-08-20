@@ -102,6 +102,29 @@ Proyecto backend para el Product Management desarrollado con [Django](https://ww
     docker-compose up
     ```
 
+## EJECUTAR CON DOCKER
+
+-   Copie y renombre el archivo `.env-example` a `.env` (No reemplace directamente el archivo `.env-example`, cópielo)
+-   En el archivo `.env` cambie el valor de la variable `DATABASE_URL` a `db` (nombre del servicio de base datos en el docker-compose) y también quitar o vaciar el valor de `DATABASE_PORT`. Cambiar el valor del resto de las variables es opcional
+-   Ejecutar
+    ```
+    docker-compose up --build
+    ```
+-   El backend estará disponible en `http://localhost:8000`
+
+-   Para iniciar una sesión interactiva en el contenedor de backend ejecute:
+
+    ```
+    docker-compose exec app bash
+    docker-compose exec nginx bash
+    ```
+
+-   Para ver el log utilice:
+    ```
+    docker-compose logs -f app
+    docker-compose logs -f nginx
+    ```
+
 ## TEST, LINT Y FORMATO DE CÓDIGO PYTHON
 
 -   Para ejecutar test y verificar linteo utilice el comando [nox](https://nox.thea.codes/en/stable/):
