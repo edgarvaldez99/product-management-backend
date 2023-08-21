@@ -34,8 +34,9 @@ DEBUG = str(env("ENV", "")) == "development"
 
 ALLOWED_HOSTS = ["*"]
 
-CSRF_TRUSTED_ORIGINS = list(str(env("CSRF_TRUSTED_ORIGINS", "*")).split(","))
-
+# CSRF_TRUSTED_ORIGINS = list(str(env("CSRF_TRUSTED_ORIGINS", "*")).split(","))
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_METHODS = ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
 
 # Application definition
 
